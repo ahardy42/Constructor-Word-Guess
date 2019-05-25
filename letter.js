@@ -12,7 +12,7 @@ var Letter = function(letter) {
 		}
 	}
 	this.displayLetter = function() {
-		if (thisGuess || this.letter === " " || this.letter === ";") {
+		if (this.isGuessed || this.letter === " " || this.letter === ":") {
 			return this.letter; 
 		} else {
 			return this.hidden;
