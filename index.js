@@ -1,8 +1,15 @@
+// this allows the program to use the .env file to get key for tmdb
+require("dotenv").config();
+// importing the dependant modules
 var inquirer = require("inquirer");
 var axios = require("axios");
 var Word = require("./word");
+var key = require("./key");
 
-var url = "https://api.themoviedb.org/3/movie/popular?api_key=5e6f5259879b4cb3056ce178a213916e&language=en-US&page=1";
+var tmdbKey = key.tmdbKey.key;
+
+var url = `https://api.themoviedb.org/3/movie/popular?api_key=${tmdbKey}&language=en-US&page=1`;
+console.log(url);
 
 var Game = function () {
     // get the word list
