@@ -8,7 +8,6 @@ var Letter = function(letter) {
 	this.checkGuess = function(guess) {
 		if (guess === this.letter.toLowerCase()) {
 			this.isGuessed = true;
-			// maybe also return true;
 		}
 	}
 	this.displayLetter = function() {

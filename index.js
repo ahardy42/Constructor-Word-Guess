@@ -38,6 +38,7 @@ var Game = function () {
     };
     this.playGame = async function () {
         var isEnd = false;
+        console.log("\n... Grabbing Popular Movies For The Week from www.themoviedb.org/  ...\n\n\n");
         await this.getList(); // this relies on a promise, so wait for it.
         this.currentWord();
         var word = new Word(this.currWord);
@@ -48,25 +49,31 @@ var Game = function () {
         var questions = function () {
             if (!isEnd && numGuesses > 0) {
                 word.displayWord();
-                console.log(`\nYou have ${numGuesses} remaining...`);
+                if (numGuesses > 1) {
+                    console.log(`\nYou have ${numGuesses} guesses remaining...`);
+                } else {
+                    console.log(`\nYou have ${numGuesses} guess remaining...`);
+                }
                 inquirer.prompt([
                     {
                         type: "input",
-                        message: "Guess a Letter!?",
+                        message: "Guess a Letter!",
                         name: "guess"
                     }
                 ]).then(function (answers) {
                     // check if guess is correct
                     var isCorrectGuess = word.guessCheck(answers.guess);
-                    console.log(isCorrectGuess);
                     if (!isCorrectGuess) {numGuesses--}
                     // see if the word has been guessed
                     isEnd = word.areAllLettersGuessed();
                     questions();
                 });
             } else if (numGuesses === 0) {
+                word.wordArray.forEach(function(lett) {
+                    lett.isGuessed = true;
+                });
                 word.displayWord();
-                console.log(`\nThe Movie title is: ${title}, but you are out of guesses! so...\n\n\nYou Lose!`)
+                console.log("\nYou are out of guesses... You Lose!\n");
             }else {
                 word.displayWord();
                 console.log(`You won! Below you will find a plot summary of the movie ${title}`);
