@@ -4,20 +4,28 @@ var Word = function(word) {
     this.word = word;
     this.wordArray = [];
 	this.makeWord = function() {
+        // create an array of letter objects
+        this.wordArray.length = 0;
 		for (i = 0; i < this.word.length; i++) {
             var letter = new Letter(word[i]); 
-            letter.displayLetter();
             this.wordArray.push(letter);
         }
-		var wordString = this.wordArray.join(" ");
-        console.log(`\nThe word to guess is: ${wordString}\n`);
     };
+    this.displayWord = function() {
+        var lettStringArray = [];
+        this.wordArray.forEach(function(lett) {
+            var lettString = lett.displayLetter();
+            lettStringArray.push(lettString);
+        });
+        var wordString = lettStringArray.join(" ");
+        console.log(`\nThe "Popular" Movie Title to guess is: ${wordString}\n`);
+    }
     this.guessCheck = function(guess) {
         var isCorrect = false;
         this.wordArray.forEach(function(lett) {
             lett.checkGuess(guess);
             lett.displayLetter();
-            if (lett.isGuessed) { isCorrect = true};
+            if (lett.letter.toLowerCase() === guess && lett.isGuessed) { isCorrect = true};
         });
         return isCorrect;
     };
