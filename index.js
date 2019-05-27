@@ -85,7 +85,6 @@ var Game = function () {
                 word.displayWord();
                 console.log(`You won! Below you will find a plot summary of the movie ${title}`);
                 console.log(`\nPlot Summary: ${overview}\n`);
-                return;
             };
         }
         questions();
