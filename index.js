@@ -3,6 +3,14 @@ var inquirer = require("inquirer");
 
 var game = new Game();
 
+var play = function(answer) {
+    if (answer.play) {
+        game.playGame();
+    } else {
+        console.log("\nBye Bye then!\n");
+    }
+}
+
 var startGame = async function() {
     var answer = await inquirer.prompt([{
         type: "confirm",
@@ -10,12 +18,9 @@ var startGame = async function() {
         default: true,
         name: "play"
     }]);
-    if (answer.play) {
-        game.playGame();
-        console.log("farts");
-    } else {
-        console.log("\nBye Bye then!\n");
-    }
+    return answer;
 }
 
-startGame();
+startGame().then(function(answer) {
+    play(answer);
+});

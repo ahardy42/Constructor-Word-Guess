@@ -19,7 +19,7 @@ var Word = function(word) {
             lettStringArray.push(lettString);
         });
         var wordString = lettStringArray.join(" ");
-        console.log(`\nThe "Popular" Movie Title to guess is: ${wordString}\n`);
+        console.log(`\nThe Movie Title to guess is: ${wordString}\n`);
     }
     this.guessCheck = function(guess) {
         // run through the word and see if the guess was correct. returns a boolean which will be

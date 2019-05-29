@@ -54,28 +54,26 @@ var Game = function () {
         var title = this.currWord;
         var overview = this.currentOverview;
         var numGuesses = 12;
-        var questions = function () {
-            if (!isEnd && numGuesses > 0) {
+        var questions = async function () { // async recursion 
+            if (!isEnd && numGuesses > 0) { // this is end check for recursion
                 word.displayWord();
                 if (numGuesses > 1) {
                     console.log(`\nYou have ${numGuesses} guesses remaining...`);
                 } else {
                     console.log(`\nYou have ${numGuesses} guess remaining...`);
                 }
-                inquirer.prompt([
+                var answers = await inquirer.prompt([
                     {
                         type: "input",
                         message: "Guess a Letter!",
                         name: "guess"
                     }
-                ]).then(function (answers) {
-                    // check if guess is correct
-                    var isCorrectGuess = word.guessCheck(answers.guess);
-                    if (!isCorrectGuess) {numGuesses--}
-                    // see if the word has been guessed
-                    isEnd = word.areAllLettersGuessed();
-                    questions();
-                });
+                ]);
+                var isCorrectGuess = await word.guessCheck(answers.guess);
+                if (!isCorrectGuess) { numGuesses-- }
+                // see if the word has been guessed
+                isEnd = await word.areAllLettersGuessed();
+                await questions();
             } else if (numGuesses === 0) {
                 word.wordArray.forEach(function(lett) {
                     lett.isGuessed = true;
