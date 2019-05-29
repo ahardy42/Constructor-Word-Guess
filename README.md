@@ -8,7 +8,7 @@ A random movie title is chosen from the array, and this is the word you need to 
 
 ## How to Play...
 
-1. After forking this repo, and cloning to your machine, you will need to create your own TMDB API Key and, create a dotenv (.env) file with the following code:
+1. After forking this repo, cloning to your machine, and navigating to the root directory, you will need to create your own TMDB API Key and, create a dotenv (.env) file with the following code:
 
 ```
 TMDB_KEY=<your key>
@@ -21,10 +21,10 @@ npm install
 ```
 3. Now you are ready to play! type ``` node index.js ``` to your console and you will begin with a prompt:
 
-< insert screenshot gif > 
+![initial prompt](https://media.giphy.com/media/POHpUqZ9uGSf5sKAWP/giphy.gif) 
 
-4. type ``` y ``` and hit enter, and you're off to the races. 
+4. After you type ``` y ``` and hit enter, you're off to the races. 
 
-## Screen Grabs from the Game... 
+## Screen Grab GIF showing game play... 
 
-< insert screen grabs from game play >
+![GIF showing game play](https://media.giphy.com/media/3HDfX2T3t1neTyhSnG/giphy.gif)
